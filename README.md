@@ -1,130 +1,159 @@
-# Community Surf: Windsurf AI Monitor
+# Community Surf
 
-Community Surf is a specialized tool for monitoring and interacting with Reddit discussions related to Windsurf AI (https://windsurfai.org/), an IDE with artificial intelligence capabilities. This project allows users to track mentions, reviews, and comparisons of Windsurf AI across various Reddit communities.
+## Overview
+
+Community Surf is a comprehensive tool for monitoring and analyzing social media and forum discussions related to technology, programming, and AI tools. The application aggregates content from multiple sources including Reddit forums and Twitter, providing a streamlined interface for filtering, viewing, and interacting with relevant posts.
 
 ## Features
 
-- Monitoring of Reddit posts mentioning Windsurf AI
-- Visualization of posts organized in cards with title, content, and images
-- Filtering by subreddit and specific search terms
-- Direct links to original Reddit posts
-- Text field for composing personalized responses
-- Function to copy responses to clipboard
+- **Multi-source Content Aggregation**: Collect posts from Reddit and Twitter related to programming and AI tools
+- **Advanced Filtering**: Filter content by source, category, date, and other metadata
+- **Interactive Post Cards**: View and interact with posts in a card-based interface
+- **Modal Detail View**: Examine post details in a focused modal interface
+- **Content Classification**: AI-powered classification of content by topic and sentiment
+- **Response Generation**: Automatically generate response drafts to posts using OpenAI integration
+- **Dark/Light Mode**: Toggle between color themes for comfortable viewing
 
-## Monitored Subreddits
+## Tech Stack
 
-The system monitors the following subreddits for relevant discussions:
+### Frontend
 
-- r/programming
-- r/coding
-- r/ArtificialIntelligence
-- r/MachineLearning
-- r/webdev
-- r/javascript
-- r/Python
-- r/codeium
-- r/IDEs
-- r/vscode
-- r/aitools
+- React.js
+- Modern JavaScript (ES6+)
+- CSS for styling components
+- Custom hook-based state management
+
+### Backend
+
+- Python
+- Flask web framework
+- SQLite database
+- SQLAlchemy ORM
+- Praw (Python Reddit API Wrapper)
+- OpenAI integration for content analysis
 
 ## Project Structure
 
-The project is divided into two parts:
+```
+community-surf/
+├── backend/                # Python backend service
+│   ├── models/             # Data models
+│   ├── static/             # Static assets for backend
+│   ├── templates/          # HTML templates
+│   ├── app.py              # Main Flask application
+│   ├── cursor_forum_api.py # API for cursor forum interactions
+│   ├── twitter_api.py      # Twitter integration
+│   └── requirements.txt    # Python dependencies
+├── public/                 # Static assets for frontend
+├── src/                    # React application
+│   ├── app/                # App-wide hooks and state management
+│   ├── components/         # React components
+│   │   ├── ui/             # Reusable UI components
+│   │   └── ...             # Feature-specific components
+│   ├── utils/              # Utility functions
+│   └── App.js              # Main application component
+└── package.json            # Node.js dependencies
+```
 
-1. **Frontend** (React)
+## Installation
 
-   - User interface focused on posts about Windsurf AI
-   - Search functionality for specific terms
-   - Visualization and interaction with relevant posts
+### Prerequisites
 
-2. **Backend** (Python/Flask)
-   - API to fetch Reddit posts related to Windsurf AI
-   - Filtering of relevant content
+- Node.js (v14 or later)
+- Python 3.7+
+- Git
 
-## Requirements
+### Frontend Setup
 
-- Node.js (for frontend)
-- Python 3.7+ (for backend)
-- Internet access to load dependencies
+1. Clone the repository:
 
-## Setup and Execution
+   ```
+   git clone https://github.com/pedroarrudaa/community.git
+   cd community
+   ```
 
-### Frontend (React)
-
-1. Install dependencies:
+2. Install Node.js dependencies:
 
    ```
    npm install
    ```
 
-2. Start the development server:
-
+3. Start the development server:
    ```
    npm start
    ```
 
-3. Access the application at `http://localhost:3000`
+### Backend Setup
 
-### Backend (Python/Flask)
+1. Navigate to the backend directory:
 
-1. Create and activate a virtual environment:
+   ```
+   cd backend
+   ```
+
+2. Create and activate a virtual environment:
 
    ```
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-2. Install dependencies:
+3. Install Python dependencies:
 
    ```
-   cd backend
    pip install -r requirements.txt
    ```
 
-3. Configure environment variables:
+4. Configure environment variables (copy .env.example to .env and edit as needed)
 
-   ```
-   cp .env.example .env
-   # Edit the .env file with your Reddit API credentials
-   ```
-
-4. Start the server:
-
+5. Start the Flask server:
    ```
    python app.py
    ```
 
-5. The API will be available at `http://localhost:5000`
+## Usage
 
-## Next Steps
+1. Access the application at `http://localhost:3000`
+2. Use the filter bar to narrow down content by source, category, or keywords
+3. Click on post cards to view additional details
+4. Toggle between light and dark themes using the theme switcher
 
-- **Integration with Reddit API**: Get real data about mentions of Windsurf AI
-- **Sentiment Analysis**: Classify posts as positive, negative, or neutral
-- **Notifications**: Real-time alerts for new mentions of Windsurf AI
-- **Automation**: Integration with automation tools to automatically respond to queries about Windsurf AI
+## API Endpoints
 
-## Contribution
+The backend offers several API endpoints including:
 
-This project is in its early stages. Contributions are welcome through pull requests.
+- `/api/posts` - Get all posts
+- `/api/twitter` - Get Twitter data
+- `/api/forum` - Get forum data
+- `/api/classify` - Classify content using AI
+
+## Configuration
+
+### API Keys
+
+To use external services, you'll need to obtain API keys and configure them in your `.env` file:
+
+```
+# Twitter API
+TWITTER_API_KEY=your_key_here
+TWITTER_API_SECRET=your_secret_here
+
+# Reddit API
+REDDIT_CLIENT_ID=your_client_id
+REDDIT_CLIENT_SECRET=your_client_secret
+
+# OpenAI (for content classification)
+OPENAI_API_KEY=your_openai_key
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-ISC
+This project is licensed under the ISC License.
 
-## ChatGPT Integration
+## Acknowledgements
 
-This application now supports automatic response generation using the ChatGPT (OpenAI) API. To use this feature, follow the steps below:
-
-1. Create an account on [OpenAI](https://platform.openai.com/) if you don't have one yet.
-2. Generate an API key in the [API Keys](https://platform.openai.com/account/api-keys) section.
-3. Copy the `.env` file to `.env.local` and replace `your_api_key_here` with your actual API key:
-
-```
-REACT_APP_OPENAI_API_KEY=sk-your_api_key_here
-```
-
-4. Restart the application.
-
-Now, when you open a post or tweet in the modal, a response will be automatically generated using ChatGPT.
-
-**Security note**: Never share your API key in public repositories or with other users.
+Special thanks to all contributors who have helped make this project possible.
