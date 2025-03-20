@@ -2,7 +2,7 @@
 
 ## Overview
 
-Community Surf is a comprehensive tool for monitoring and analyzing social media and forum discussions related to technology, programming, and AI tools. The application aggregates content from multiple sources including Reddit forums and Twitter, providing a streamlined interface for filtering, viewing, and interacting with relevant posts.
+Community Surf is a comprehensive tool for monitoring and analyzing social media and forum discussions related to technology, programming, and AI tools. The application aggregates content from multiple sources including Reddit forums and X, providing a streamlined interface for filtering, viewing, and interacting with relevant posts.
 
 ## Features
 
@@ -42,7 +42,7 @@ community-surf/
 │   ├── templates/          # HTML templates
 │   ├── app.py              # Main Flask application
 │   ├── cursor_forum_api.py # API for cursor forum interactions
-│   ├── twitter_api.py      # Twitter integration
+│   ├── twitter_api.py      # X integration
 │   └── requirements.txt    # Python dependencies
 ├── public/                 # Static assets for frontend
 ├── src/                    # React application
