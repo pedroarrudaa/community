@@ -1,0 +1,78 @@
+.sub-category-filter {
+  margin: 1rem 0;
+  background-color: var(--background-light);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sub-filter-header {
+  margin-bottom: 0.5rem;
+}
+
+.sub-filter-header span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.sub-filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sub-filter-option {
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sub-filter-option:hover {
+  background-color: var(--hover-color);
+}
+
+.sub-filter-option.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Dark mode adjustments */
+body.dark-theme .sub-category-filter {
+  background-color: var(--background-dark);
+}
+
+body.dark-theme .sub-filter-option {
+  background-color: var(--background-dark-secondary);
+  border-color: var(--border-color-dark);
+}
+
+body.dark-theme .sub-filter-option:hover {
+  background-color: var(--hover-color-dark);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .sub-filter-options {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .sub-filter-options::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sub-filter-option {
+    white-space: nowrap;
+  }
+}

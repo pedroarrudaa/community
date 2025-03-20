@@ -1,0 +1,36 @@
+.ui-tabs {
+  width: 100%;
+}
+
+.ui-tabs-list {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+}
+
+.ui-tabs-trigger {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.ui-tabs-trigger:hover {
+  color: #111827;
+}
+
+.ui-tabs-trigger--active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+.ui-tabs-content {
+  padding: 0.5rem 0;
+} 

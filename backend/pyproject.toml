@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=42.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pyright]
+include = ["app.py", "*.py"]
+exclude = ["**/node_modules", "**/__pycache__", "venv"]
+reportMissingImports = false
+reportMissingModuleSource = false
+pythonVersion = "3.12"
+pythonPlatform = "Darwin"
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312"] 

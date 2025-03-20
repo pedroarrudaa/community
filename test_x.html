@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste do X/Twitter</title>
+    <script>
+        async function testTweets() {
+            try {
+                const response = await fetch('http://localhost:5001/api/tweets/recent');
+                const data = await response.json();
+                
+                document.getElementById('count').textContent = data.posts.length;
+                
+                const tweetsList = document.getElementById('tweets');
+                tweetsList.innerHTML = '';
+                
+                data.posts.forEach(tweet => {
+                    const tweetItem = document.createElement('div');
+                    tweetItem.className = 'tweet-card';
+                    
+                    tweetItem.innerHTML = `
+                        <div class="tweet-header">
+                            <img src="${tweet.profile_image || 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'}" class="profile-pic" />
+                            <div>
+                                <div class="author-name">${tweet.author_name || tweet.author}</div>
+                                <div class="author-handle">@${tweet.author}</div>
+                            </div>
+                        </div>
+                        <div class="tweet-content">${tweet.content}</div>
+                        <div class="tweet-footer">
+                            <span>❤️ ${tweet.likes || 0}</span>
+                            <span>🔁 ${tweet.retweets || 0}</span>
+                            <span>💬 ${tweet.replies || 0}</span>
+                        </div>
+                    `;
+                    
+                    tweetsList.appendChild(tweetItem);
+                });
+            } catch (error) {
+                console.error('Error fetching tweets:', error);
+                document.getElementById('error').textContent = 'Erro ao carregar tweets: ' + error.message;
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .tweet-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+        .tweet-header {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .author-name {
+            font-weight: bold;
+        }
+        .author-handle {
+            color: #666;
+        }
+        .tweet-content {
+            margin-bottom: 10px;
+        }
+        .tweet-footer {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+        }
+        button {
+            padding: 10px 15px;
+            background: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0c85d0;
+        }
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste do X/Twitter</h1>
+    <button onclick="testTweets()">Carregar Tweets</button>
+    <p>Total de tweets: <span id="count">0</span></p>
+    <p id="error"></p>
+    <div id="tweets"></div>
+</body>
+</html>

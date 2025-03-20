@@ -1,0 +1,343 @@
+.twitter-card {
+  /* border-right: 4px solid #000; */ /* Removed Black X color on the right side */
+  min-height: 280px;
+  max-height: 450px;
+  height: auto; /* Auto height instead of fixed */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  margin-bottom: 1rem;
+}
+
+.twitter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure content container takes available space */
+.twitter-card .post-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.twitter-card .post-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+/* Consistent stats section styling between card types */
+.twitter-card .post-stats {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.5rem;
+  padding-left: 12px; /* Adicionado padding à esquerda para melhor espaçamento */
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/* Specific style for Twitter cards without image */
+.twitter-card.no-image {
+  min-height: 200px;
+  max-height: 350px;
+}
+
+/* Adjust content in cards without image */
+.twitter-card.no-image .post-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Allow more lines for text when there's no image */
+.twitter-card.no-image .post-excerpt,
+.post-excerpt.no-image-excerpt {
+  -webkit-line-clamp: 6;
+}
+
+/* Specific styles for tweet images */
+.twitter-card .post-image-container {
+  margin-top: 0.5rem;
+  min-height: 0; /* Remove min-height */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center image horizontally */
+  align-items: center; /* Center image vertically */
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 220px; /* Increased height for better image display */
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.03);
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.2s ease;
+}
+
+.twitter-card .post-image-container:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  transform: translateY(-2px);
+}
+
+.twitter-card .post-image {
+  width: 100%;
+  height: auto;
+  max-height: 220px; /* Match container height */
+  object-fit: contain; /* Changed to contain to ensure full image is visible */
+  object-position: center; /* Center the image */
+  display: block;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  background-color: #f8f8f8; /* Light background for transparent images */
+  image-rendering: auto; /* Default to browser's best rendering method */
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden; /* Reduce jagged edges during transitions */
+}
+
+/* When in high-DPI screens, ensure images are crisp */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .twitter-card .post-image {
+    image-rendering: high-quality;
+  }
+}
+
+/* Enhanced hover effect for post images */
+.twitter-card .post-image-container:hover .post-image {
+  transform: scale(1.03); /* Slightly larger zoom effect */
+}
+
+/* Dark mode background for images */
+.dark-theme .twitter-card .post-image {
+  background-color: #2a2a2a;
+}
+
+/* Loading effect before image loads */
+.twitter-card .post-image-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  opacity: 0; /* Initially invisible */
+  transition: opacity 0.3s ease;
+}
+
+.twitter-card .post-image-container.loading::before {
+  opacity: 1;
+}
+
+/* Style for the fallback when image can't be loaded */
+.image-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 160px;
+  background-color: #f1f1f1;
+  color: #888;
+  border-radius: 8px;
+  padding: 20px;
+  gap: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Correction for tweet text */
+.twitter-card .post-excerpt {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 12px; /* Added padding to the left for better spacing */
+  padding-right: 12px; /* Also add padding to the right for symmetry */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; /* Limit to 4 lines by default */
+  word-break: break-word;
+}
+
+.twitter-icon {
+  color: var(--color-primary);
+}
+
+.tweet-author-avatar {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Improvements to profile image style */
+.profile-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  background-color: #f0f0f0; /* Background color for placeholder */
+}
+
+.twitter-card .post-source-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-primary);
+}
+
+/* Dark mode optimizations */
+.dark-theme .twitter-card {
+  border-right-color: #000;
+}
+
+.dark-theme .twitter-icon {
+  color: #73ebda;
+}
+
+.dark-theme .twitter-card .post-source-icon {
+  color: #73ebda;
+}
+
+.dark-theme .twitter-card .post-image-container {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .profile-image {
+  border-color: var(--color-border-dark);
+  background-color: #2a2a2a;
+}
+
+.dark-theme .image-fallback {
+  background-color: #333;
+  color: #aaa;
+}
+
+/* Correction for the date display of tweets */
+.twitter-card .post-date {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  gap: 0.25rem;
+}
+
+.twitter-card .post-date-icon {
+  color: currentColor; /* Using current text color instead of Windsurf color */
+  opacity: 0.9;
+}
+
+.twitter-card .post-date {
+  border-radius: 4px;
+  padding: 2px 4px;
+  transition: background-color 0.2s ease;
+}
+
+.twitter-card .post-date:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode optimizations */
+.dark-theme .twitter-card .post-date-icon {
+  color: currentColor; /* Using current text color instead of Windsurf color */
+}
+
+.dark-theme .twitter-card .post-date:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .twitter-card {
+    min-height: 250px;
+    max-height: 400px; /* Slightly smaller height on mobile devices */
+  }
+
+  .twitter-card.no-image {
+    min-height: 180px;
+    max-height: 300px;
+  }
+
+  .twitter-card .post-image-container {
+    max-height: 180px; /* Increased from 150px for better mobile display */
+  }
+
+  .twitter-card .post-image {
+    max-height: 180px; /* Match container height */
+  }
+
+  /* Allow fewer lines for text on mobile */
+  .twitter-card.no-image .post-excerpt,
+  .post-excerpt.no-image-excerpt {
+    -webkit-line-clamp: 5;
+  }
+
+  .image-fallback {
+    height: 120px;
+    padding: 15px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .twitter-card .post-image-container {
+    max-height: 150px;
+  }
+
+  .twitter-card .post-image {
+    max-height: 150px;
+  }
+
+  /* Further adjust number of text lines on very small screens */
+  .twitter-card .post-excerpt {
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Hide empty containers completely */
+.twitter-card .post-image-container:empty {
+  display: none;
+}
+
+/* Ensure no-image class properly hides empty containers */
+.twitter-card.no-image .post-image-container {
+  display: none;
+}
+
+.twitter-card .card-header {
+  background-color: #1da1f2 !important;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+}
+
+.twitter-card .card-body {
+  padding: 1.25rem;
+}
+
+.twitter-card .card-footer {
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+}
+
+.profile-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e1e8ed;
+}
+
+.tweet-media img {
+  max-height: 300px;
+  object-fit: contain;
+  width: auto;
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}

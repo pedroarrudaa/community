@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <script>
+        async function testAPI() {
+            try {
+                const response = await fetch('http://localhost:5001/api/cursor-forum/topics?sort=new&limit=20');
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+                const data = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+                document.getElementById('status').textContent = 'Success!';
+                document.getElementById('status').style.color = 'green';
+            } catch (error) {
+                document.getElementById('status').textContent = `Error: ${error.message}`;
+                document.getElementById('status').style.color = 'red';
+                console.error('Error fetching data:', error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>API Test</h1>
+    <button onclick="testAPI()">Test API</button>
+    <p id="status"></p>
+    <pre id="result" style="background-color: #f0f0f0; padding: 10px; max-height: 400px; overflow: auto;"></pre>
+</body>
+</html>

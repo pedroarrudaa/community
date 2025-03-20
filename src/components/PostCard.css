@@ -1,0 +1,1031 @@
+.post-card {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: auto;
+  min-height: 200px;
+  max-height: none;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  /* Optimization for masonry layout */
+  break-inside: avoid;
+}
+
+/* Cards específicos por plataforma */
+.twitter-card {
+  position: relative;
+  border-left: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card style for Reddit */
+.post-card:not(.twitter-card) {
+  position: relative;
+  border-left: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific style for cards without image */
+.post-card.no-image {
+  max-height: 320px;
+  height: auto;
+  align-self: flex-start;
+  max-height: none;
+}
+
+/* Style for platform label */
+.platform-label {
+  font-weight: 600;
+}
+
+.platform-label.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.platform-label.clickable:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.twitter-card .platform-label {
+  color: #000;
+}
+
+.twitter-card .platform-label.clickable:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.post-card:not(.twitter-card) .platform-label {
+  color: #ff4500;
+}
+
+.post-card:not(.twitter-card) .platform-label.clickable:hover {
+  background-color: rgba(255, 69, 0, 0.1);
+}
+
+.post-author-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Specific style for when a card without image is hovered */
+.post-card.no-image:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.post-card.active {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.15);
+}
+
+.post-header {
+  padding: 0.75rem 1.25rem 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.post-source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #586069;
+}
+
+.post-source-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.twitter-icon {
+  color: #1da1f2;
+}
+
+.reddit-icon {
+  color: #ff4500; /* Reddit color */
+}
+
+.post-subreddit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  border-radius: 14px;
+  padding: 0.125rem 0.75rem;
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  font-size: 0.8125rem;
+}
+
+.post-title-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.post-title-container .profile-image {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 0;
+  color: #24292e;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* New inline author style */
+.post-author-inline {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #586069;
+  margin-left: 0.25rem;
+}
+
+.post-source-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.post-date {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  gap: 0.25rem;
+  border-radius: 4px;
+  padding: 2px 4px;
+  transition: background-color 0.2s ease;
+}
+
+.post-date:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.post-date-icon {
+  color: currentColor;
+  opacity: 0.9;
+}
+
+.post-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.profile-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+.post-excerpt {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  word-break: break-word;
+}
+
+.post-stats {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.post-stat,
+.post-score {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.stat-label {
+  margin-right: 0.1rem;
+  white-space: nowrap;
+}
+
+.post-stat-icon {
+  margin-right: 0.2rem;
+  color: #586069;
+}
+
+.like-icon {
+  color: currentColor;
+}
+
+.post-author {
+  margin-left: auto;
+  font-weight: 500;
+}
+
+.post-actions {
+  padding: 0.5rem 1.25rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.post-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.post-action-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.post-action-button:hover {
+  transform: translateY(-1px);
+  color: var(--text-primary);
+  background-color: var(--bg-active);
+}
+
+.post-action-button:hover::before {
+  opacity: 0.05;
+}
+
+.post-action-button:active {
+  transform: translateY(0);
+}
+
+.post-action-button.primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.post-action-button.primary:hover {
+  background-color: var(--accent-hover);
+  color: white;
+}
+
+.post-action-button.accent {
+  background-color: rgba(var(--accent-color-rgb), 0.15);
+  color: var(--accent-color);
+}
+
+.post-action-button.accent:hover {
+  background-color: rgba(var(--accent-color-rgb), 0.25);
+  color: var(--accent-color);
+}
+
+.button-icon {
+  opacity: 0.8;
+}
+
+/* Score styling */
+.post-score {
+  font-weight: 500;
+}
+
+/* Twitter card specific styling */
+.twitter-card .post-source-icon {
+  color: #73ebda; /* Windsurf color */
+}
+
+.twitter-card .post-title {
+  margin-top: 0.25rem;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .post-card {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .post-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .profile-image {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .post-date-icon {
+    color: currentColor;
+  }
+
+  .post-date:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Skeleton loading state */
+.post-card.skeleton {
+  pointer-events: none;
+}
+
+.skeleton-badge,
+.skeleton-title,
+.skeleton-date,
+.skeleton-image,
+.skeleton-footer {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-start) 0%,
+    var(--skeleton-end) 50%,
+    var(--skeleton-start) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-badge {
+  width: 80px;
+  height: 20px;
+  margin-bottom: 12px;
+}
+
+.skeleton-title {
+  height: 24px;
+  margin-bottom: 12px;
+}
+
+.skeleton-date {
+  width: 120px;
+  height: 16px;
+  margin-bottom: 16px;
+}
+
+.skeleton-image {
+  height: 120px;
+  margin-bottom: 16px;
+}
+
+.skeleton-footer {
+  height: 18px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Media Queries */
+@media (min-width: 1600px) {
+  .post-excerpt {
+    -webkit-line-clamp: 5; /* More lines for very large screens */
+  }
+
+  .post-card {
+    /* Removing min-height */
+    /* min-height: 320px; */
+  }
+
+  .post-image-container,
+  .post-image {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .post-excerpt {
+    -webkit-line-clamp: 4; /* Limita o texto a 4 linhas em telas menores */
+  }
+
+  .post-card {
+    /* Removing min-height */
+    /* min-height: 280px; */
+  }
+}
+
+@media (max-width: 992px) {
+  .post-excerpt {
+    -webkit-line-clamp: 2; /* Limita o texto a 2 linhas em telas médias */
+  }
+
+  .post-image-container {
+    max-height: 100px;
+  }
+
+  .post-card {
+    /* Removing min-height */
+    /* min-height: 180px; */
+  }
+}
+
+@media (max-width: 768px) {
+  .post-header {
+    padding: 0.5rem 0.75rem 0.25rem;
+  }
+
+  .post-body {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .post-card {
+    /* Removing min-height */
+    /* min-height: auto; */
+    max-height: none;
+    height: auto;
+  }
+
+  .post-image-container {
+    max-height: 150px; /* Larger images on mobile devices for better viewing */
+  }
+
+  .post-card.no-image {
+    /* Removing min-height */
+    /* min-height: 180px; */
+    max-height: 280px;
+  }
+
+  .post-card.no-image .post-excerpt {
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .post-card.no-image {
+    /* Removing min-height */
+    /* min-height: 220px; */
+    max-height: 340px;
+  }
+
+  .post-card.no-image .post-excerpt {
+    -webkit-line-clamp: 4;
+  }
+}
+
+/* Botões de ação */
+.open-reddit-link,
+.open-x-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.open-reddit-link {
+  color: #ff4500;
+  background-color: rgba(255, 69, 0, 0.1);
+}
+
+.open-reddit-link:hover {
+  background-color: rgba(255, 69, 0, 0.2);
+  color: #ff4500;
+}
+
+.open-x-link {
+  color: #1da1f2;
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.open-x-link:hover {
+  background-color: rgba(29, 161, 242, 0.2);
+  color: #1da1f2;
+}
+
+.twitter-icon {
+  color: #1da1f2;
+}
+
+.reddit-icon {
+  color: #ff4500;
+}
+
+/* Style for the post image container - Enhanced for better quality and performance */
+.post-image-container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 200px;
+  border-radius: 8px;
+
+  /* Remove high-quality rendering for better performance */
+  image-rendering: auto;
+  -webkit-image-rendering: auto;
+  -moz-image-rendering: auto;
+  -o-image-rendering: auto;
+}
+
+/* Remove zoom effect for better performance */
+.post-card:hover .post-image {
+  transform: none;
+}
+
+/* Add subtle zoom effect on hover for better UX */
+.post-card:hover .post-image {
+  transform: scale(1.02);
+}
+
+/* Add specific media handling for different screen densities */
+@media (min-resolution: 2dppx) {
+  .post-image {
+    image-rendering: high-quality; /* Ensure crisp images on retina/high-DPI displays */
+  }
+}
+
+/* Handle empty image containers more gracefully */
+.post-image-container:empty {
+  display: none; /* Hide empty containers to avoid layout issues */
+}
+
+/* Adapt excerpt to have fewer lines in cards without images */
+.post-card.no-image .post-excerpt {
+  -webkit-line-clamp: 3;
+}
+
+/* Adjust padding of the body in cards without images */
+.post-card.no-image .post-body {
+  flex: 0 1 auto;
+  padding-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: flex-start;
+  gap: 0.25rem;
+}
+
+.post-header-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.post-subreddit-header {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.post-author-info {
+  color: #586069;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+.post-card:not(.twitter-card) .post-subreddit-header {
+  color: var(--text-secondary);
+}
+
+/* Styles for keyboard shortcuts modal */
+.keyboard-shortcuts {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 8px;
+  z-index: 100;
+  font-size: 0.85rem;
+}
+
+.keyboard-shortcuts h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.shortcuts-icon {
+  color: currentColor;
+}
+
+.shortcuts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shortcuts-list li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shortcut-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #333;
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 0.8rem;
+  box-shadow: 0 1px 0 #ddd;
+}
+
+/* Dark mode styles for keyboard shortcuts */
+@media (prefers-color-scheme: dark) {
+  .keyboard-shortcuts {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #eee;
+  }
+
+  .keyboard-shortcuts h4 {
+    color: #eee;
+  }
+
+  .shortcuts-icon {
+    color: currentColor;
+  }
+
+  .shortcut-key {
+    background-color: #333;
+    border-color: #73ebda;
+    color: #eee;
+    box-shadow: 0 1px 0 #73ebda;
+  }
+}
+
+/* Específico para cards do Reddit */
+.post-card:not(.twitter-card) .post-stats {
+  margin-top: 0.5rem;
+}
+
+/* Atualizado para melhorar o espaçamento vertical no conteúdo */
+.post-card:not(.twitter-card) .post-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  position: relative;
+  /* Ensure minimum height to accommodate content and stats */
+  min-height: 100px;
+}
+
+/* Content area that will flex grow to fill space */
+.post-card:not(.twitter-card) .post-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin-bottom: 0.5rem;
+}
+
+/* Stats bar always at the bottom */
+.post-card:not(.twitter-card) .post-stats {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.5rem;
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+
+/* Add more specific rules to control spacing */
+.post-card:not(.twitter-card) .post-body {
+  padding-bottom: 0.25rem;
+  gap: 0;
+}
+
+.post-card:not(.twitter-card) .post-content {
+  margin-bottom: 0.25rem;
+  flex: 1;
+}
+
+.post-card:not(.twitter-card) .post-stats {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+/* When a post has no image, make it more compact */
+.post-card.no-image .post-body {
+  gap: 0;
+}
+
+.post-card.no-image .post-content {
+  margin-bottom: 0.25rem;
+}
+
+/* Ensure that when an image is not displayed, the excerpt can use more space */
+.post-excerpt.no-image-excerpt {
+  -webkit-line-clamp: 6; /* Show more lines of text when there's no image */
+}
+
+/* Hide empty image containers */
+.post-image-container:empty,
+.no-image .post-image-container {
+  display: none;
+  margin: 0;
+  height: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+/* Ensure no-image cards have appropriate height */
+.post-card.no-image {
+  max-height: 320px;
+  height: auto;
+}
+
+/* Make post-body more compact in no-image cards */
+.post-card.no-image .post-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure there's no extra space in the content area */
+.post-body,
+.post-content {
+  min-height: 0;
+}
+
+/* Loading state and spinner for image containers */
+.post-image-container.loading::before {
+  opacity: 1; /* Make shimmer effect more visible during loading */
+}
+
+/* Loading spinner animation */
+.image-loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #2563eb; /* Blue color for the spinner */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation for loading shimmer effect */
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Styles for small images */
+.post-image-container.small-image .post-image {
+  max-width: 85%;
+  max-height: 85%;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Special handling for different image aspect ratios */
+.post-image-container .post-image[src*="imgur.com"],
+.post-image-container .post-image[src*="redd.it"] {
+  object-fit: contain; /* Better for screenshots and diagrams */
+}
+
+/* High quality mode for WebP images */
+@supports (image-rendering: high-quality) {
+  .post-image[src$=".webp"] {
+    image-rendering: high-quality;
+  }
+}
+
+/* Smooth fade in for loaded images */
+.post-image-container.loaded .post-image {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Container grid for posts - simplified for better performance */
+.posts-grid-container {
+  /* Standard grid layout - more performant than masonry */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Fallback for browsers that don't support grid-template-rows: masonry */
+@supports (grid-template-rows: masonry) {
+  .posts-grid-container {
+    grid-template-rows: masonry;
+  }
+}
+
+/* Fallback using column layout for browsers without masonry support */
+@supports not (grid-template-rows: masonry) {
+  .posts-grid-container {
+    display: block;
+    column-count: 2;
+    column-gap: 1rem;
+  }
+
+  .posts-grid-container > * {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .posts-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  @supports not (grid-template-rows: masonry) {
+    .posts-grid-container {
+      column-count: 1;
+    }
+  }
+}
+
+/* Category labels styling */
+.post-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.post-category-label {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  border: 1px solid;
+  gap: 4px;
+}
+
+.post-category-label .label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Post card with classification */
+.post-card.post-filtered {
+  border-left-width: 4px !important;
+  margin-left: -4px;
+  padding-left: 16px;
+}
+
+/* Adjust the post header to accommodate labels */
+.post-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.post-title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix z-index for buttons to appear above cards */
+.filter-option {
+  z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-categories {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .post-categories::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .post-category-label {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,46 @@
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  line-height: 1.5;
+}
+
+.ui-badge--default {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.ui-badge--primary {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.ui-badge--secondary {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.ui-badge--success {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.ui-badge--warning {
+  background-color: #f59e0b;
+  color: #ffffff;
+}
+
+.ui-badge--danger {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.ui-badge--outline {
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+} 

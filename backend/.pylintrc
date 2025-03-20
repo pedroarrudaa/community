@@ -1,0 +1,25 @@
+[MASTER]
+# Python interpreter to use for module resolution
+python-path = [
+    "${workspaceFolder}/backend",
+    "${workspaceFolder}/backend/env/lib/python3.9/site-packages"
+]
+
+[MESSAGES CONTROL]
+# Disable specific warning categories
+disable=C0111,  # missing docstring
+        C0103,  # invalid name
+        C0303,  # trailing whitespace
+        W0703,  # broad except
+        R0903,  # too few public methods
+        R0913,  # too many arguments
+        E1101,  # no member (can be problematic with ORM models)
+        R0914,  # too many local variables
+
+[FORMAT]
+# Maximum line length
+max-line-length=100
+
+[SIMILARITIES]
+# Minimum similarity lines
+min-similarity-lines=10 
